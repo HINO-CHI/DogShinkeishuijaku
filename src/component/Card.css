@@ -1,0 +1,159 @@
+/*表と裏を逆にしている。*/
+
+/* .card {
+    width: 100px;
+    height: 150px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative; 
+  }
+  
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s; 
+  }
+  
+  .card.revealed .card-inner {
+    transform: rotateY(180deg); 
+  }
+  
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+  }
+  
+  .card-front {
+    transform: rotateY(180deg); 
+  }
+  
+  .card-front img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+  
+  .card-back {
+    background: #f0f0f0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+  }
+  
+  .card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 10px; 
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .card-row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .breed-text {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+   */
+
+
+.card {
+    width: 100px;
+    height: 150px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative; 
+  }
+  
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  
+  .card.revealed .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+  }
+  
+  .card-front img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+  
+  .card-back {
+    background: #f0f0f0; 
+    transform: rotateY(180deg);
+    transition: opacity 0.5s ease-in-out; 
+    opacity: 0;
+  }
+  
+  .card.revealed .card-back {
+    opacity: 1; 
+  }
+  
+  .card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; 
+    justify-content: center;
+    margin-top: 10px; 
+  }
+  
+  .card-row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .breed-text {
+    position: absolute;
+    top: -20px;  
+    left: 50%;
+    transform: translateX(-50%); 
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+  }
