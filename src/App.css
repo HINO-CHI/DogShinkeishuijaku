@@ -1,20 +1,44 @@
+/* Appのスタイル */
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 画面全体に合わせる */
+  margin: 0;
+  background-color: #000; /* 背景色を黒に設定 */
+  flex-direction: column;
+  width: 100%; /* 幅を100%に設定 */
 }
 
+/* ゲームのコントロール、プレイヤー情報、ゲーム結果のスタイル */
 .game-controls,
 .player-info,
 .game-result {
   margin: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* 幅を100%に設定 */
+  max-width: 1200px; /* 最大幅を指定 */
+  box-sizing: border-box; /* パディングを含めた幅計算 */
 }
 
+/* ゲームボードのスタイル */
 .game-board {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 10px;
   justify-items: center;
+  margin-top: 20px;
+  width: 100%; /* 幅を100%に設定 */
+  max-width: 800px; /* 最大幅を設定 */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* カードのスタイル */
 .card {
   width: 100px;
   height: 100px;
@@ -24,14 +48,23 @@
   justify-content: center;
   background-color: #fff;
   cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
 }
 
+.card:hover {
+  transform: scale(1.05); /* カードにホバー時のエフェクト */
+}
+
+/* カードの画像 */
 .card img {
   width: 80px;
   height: 80px;
   object-fit: cover;
+  border-radius: 5px;
 }
 
+/* カードの裏面 */
 .card-back {
   width: 80px;
   height: 80px;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Card.css';
 
-function Card({ card, onClick }) {
+function Card({ card, onClick, matched }) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -18,17 +18,25 @@ function Card({ card, onClick }) {
   }, [card.revealed]);
 
   return (
-    <div className={`card ${card.revealed ? 'revealed' : ''}`} onClick={onClick}>
+    <div
+      className={`card ${card.revealed ? 'revealed' : ''} ${matched ? 'matched' : ''}`}
+      onClick={onClick}
+      style={{
+        backgroundColor: matched ? 'lightgray' : 'white', // 一致した場合は背景色に変更
+        border: matched ? 'none' : '1px solid #000', // 枠線を消す場合
+        visibility: matched ? 'hidden' : 'visible', // 一致した場合は全体を非表示
+      }}
+    >
       <div className="card-inner">
         <div className="card-front">
           <img src="/src/component/images/Usagichan.png" alt="Usagichan" />
         </div>
         <div className={`card-back ${isVisible ? 'visible' : ''}`}>
-          <img src={card.image} alt={card.breed} />
+          {!matched && <img src={card.image} alt={card.breed} />} {/* 一致した場合は画像を非表示 */}
         </div>
       </div>
       {/* カード外部に犬種名を表示 */}
-      {card.revealed && <div className="breed-text">{card.breed}</div>}
+      {card.revealed && !matched && <div className="breed-text">{card.breed}</div>}
     </div>
   );
 }

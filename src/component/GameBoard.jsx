@@ -5,10 +5,12 @@ function GameBoard({ cards, handleCardClick, matchedCards }) {
   return (
     <div className="game-board">
       {cards.map((card, index) => (
-        // 一致したカードの場合は非表示にする
-        !matchedCards.includes(index) && (
-          <Card key={index} card={card} onClick={() => handleCardClick(index)} />
-        )
+        <Card
+          key={index}
+          card={card}
+          onClick={() => handleCardClick(index)}
+          matched={matchedCards.includes(index)} // 一致したカードを背景色に変更
+        />
       ))}
     </div>
   );
