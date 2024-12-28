@@ -1,0 +1,36 @@
+/* GameControls.css */
+
+/* スクロールする背景画像のコンテナ */
+.scrolling-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* 画面全体の高さに設定 */
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    z-index: -1; /* 背景として表示 */
+    pointer-events: none; /* 画像がクリックされないようにする */
+  }
+  
+  /* 各背景画像にスライドとアニメーションを設定 */
+  .scrolling-image {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    animation: slide 15s linear infinite;
+    z-index: -1; /* 背景画像が最背面に表示されるように */
+  }
+  
+  /* スライドのアニメーション */
+  @keyframes slide {
+    0% {
+      transform: translateX(-100%); /* 左から始まる */
+    }
+    100% {
+      transform: translateX(100vw); /* 右端までスライド */
+    }
+  }
+  
