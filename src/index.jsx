@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-<script type="module" src="path/to/your-script.js"></script>
 
 
 const rootElement = document.getElementById('root'); // id="root" の div を取得

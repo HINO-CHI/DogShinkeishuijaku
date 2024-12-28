@@ -28,7 +28,7 @@ function Card({ card, onClick, matched }) {
     >
       <div className="card-inner">
         <div className="card-front">
-          <img src="/src/component/images/Usagichan.png" alt="Usagichan" />
+          <img src="./images/Usagichan.png" alt="Usagichan" />
         </div>
         <div className={`card-back ${isVisible ? 'visible' : ''}`}>
           <img src={card.image} alt={card.breed} />
