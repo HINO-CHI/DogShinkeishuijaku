@@ -3,7 +3,7 @@ import './Card.css';
 
 function Card({ card, onClick, matched }) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isMatched, setIsMatched] = useState(false); // 追加: 一致したカードの管理
+  const [isMatched, setIsMatched] = useState(false); // 一致したカードの管理
 
   useEffect(() => {
     if (card.revealed) {
@@ -44,7 +44,7 @@ function Card({ card, onClick, matched }) {
     >
       <div className="card-inner">
         <div className="card-front">
-          <img src="/images/Usagichan.png" alt="Usagichan" />
+          <img src="./images/Usagichan.png" alt="Usagichan" />
         </div>
         <div className={`card-back ${isVisible ? 'visible' : ''}`}>
           <img src={card.image} alt={card.breed} />
