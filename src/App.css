@@ -126,7 +126,7 @@
 }
 
 .card .back::after {
-  content: "うさぎちゃん"; /* 代替テキスト */
+  content: "うさぎちゃん";
   font-size: 18px;
-  color: #f08b8b;  /* うさぎちゃんの色 */
+  color: #f08b8b;  
 }

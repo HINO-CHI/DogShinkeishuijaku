@@ -3,24 +3,23 @@ import './Card.css';
 
 function Card({ card, onClick, matched }) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isMatched, setIsMatched] = useState(false); // 一致したカードの管理
+  const [isMatched, setIsMatched] = useState(false); 
 
   useEffect(() => {
     if (card.revealed) {
       const timer = setTimeout(() => {
         setIsVisible(true);
-      }, 1000); // 1秒後に表示
+      }, 1000); 
       return () => clearTimeout(timer);
     } else {
-      setIsVisible(false); // revealedが解除されたら非表示
+      setIsVisible(false); 
     }
   }, [card.revealed]);
 
   useEffect(() => {
     if (matched && !isMatched) {
-      // 一致した場合、1秒後にカードを隠す
       const timer = setTimeout(() => {
-        setIsMatched(true); // 1秒後に一致した状態を確定
+        setIsMatched(true); 
       }, 1000);
       return () => clearTimeout(timer);
     }
@@ -28,7 +27,7 @@ function Card({ card, onClick, matched }) {
 
   useEffect(() => {
     if (isMatched) {
-      setIsVisible(false); // 一致した後にカードを隠す
+      setIsVisible(false); 
     }
   }, [isMatched]);
 
@@ -39,12 +38,18 @@ function Card({ card, onClick, matched }) {
       style={{
         backgroundColor: matched ? 'lightgray' : 'white',
         border: matched ? 'none' : '1px solid #000',
-        visibility: matched || isMatched ? 'hidden' : 'visible', // 一致したカードを隠す
+        visibility: matched || isMatched ? 'hidden' : 'visible', 
       }}
     >
       <div className="card-inner">
         <div className="card-front">
-          <img src="./images/Usagichan.png" alt="Usagichan" />
+          {/* Usagichan.pngの表示ができない場合にCSS模様を表示 */}
+          <img 
+            src="/images/Usagichan.png" 
+            alt="Usagichan" 
+            onError={(e) => e.target.style.display = 'none'} 
+          />
+          <div className="card-pattern" /> {/* 画像読み込み失敗時に模様を表示 */}
         </div>
         <div className={`card-back ${isVisible ? 'visible' : ''}`}>
           <img src={card.image} alt={card.breed} />

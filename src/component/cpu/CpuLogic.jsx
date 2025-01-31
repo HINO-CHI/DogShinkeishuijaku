@@ -52,33 +52,29 @@ class CpuLogic extends Component {
     const { isCpuTurn } = this.state;
     const { cards, matchedCards, onCardMatched } = this.props;
 
-    // CPUターンの時にカードを選ぶ
     if (isCpuTurn) {
       setTimeout(() => {
         const selectedCard = this.selectCard();
-
-        // 2枚目のカードが同じ場合、再度CPUのターン
         if (this.isMatching(selectedCard)) {
-          onCardMatched(selectedCard); // 適切な関数でカードが一致したことを通知
-          if (this.isMountedFlag) { // コンポーネントがマウントされているかチェック
-            this.setState({ isCpuTurn: true }); // 再度CPUターンに
+          onCardMatched(selectedCard); 
+          if (this.isMountedFlag) { 
+            this.setState({ isCpuTurn: true });
           }
         } else {
           if (this.isMountedFlag) {
-            this.setState({ isCpuTurn: false }); // プレイヤーターンに
+            this.setState({ isCpuTurn: false });
           }
         }
-      }, 1000); // 1秒後に選択を行う（適切な時間に調整できます）
+      }, 1000);
     }
   }
 
   isMatching = (selectedCard) => {
-    // 2枚目のカードが一致するかどうかを判断するロジックをここに
-    return selectedCard === selectedCard; // 仮の一致判定
+    return selectedCard === selectedCard; 
   };
 
   render() {
-    return null; // このコンポーネント自体はUIを描画しない
+    return null; 
   }
 }
 
