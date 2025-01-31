@@ -71,3 +71,56 @@
   background-color: #f0f0f0;
   border-radius: 5px;
 }
+
+/* 右下のボタン */
+.cpu-info-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.cpu-info-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* CPU情報を中央に表示 */
+.cpu-info {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(100, 100, 100, 0.7);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  z-index: 200;
+}
+
+.cpu-info h2 {
+  margin-bottom: 10px;
+}
+
+.cpu-info button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: rgba(100, 100, 100, 0.7);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cpu-info button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}

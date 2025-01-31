@@ -4,6 +4,7 @@ import GameBoard from './component/GameBoard';
 import GameControls from './component/GameControls';
 import PlayerInfo from './component/PlayerInfo';
 import GameResult from './component/GameResult';
+import CpuLogic from './component/cpu/CpuLogic';  // CPUロジックをインポート
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
@@ -17,12 +18,22 @@ function App() {
   const [selectedCards, setSelectedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
   const [gameFinished, setGameFinished] = useState(false);
+  const [cpuLogic, setCpuLogic] = useState(null);  // CPUロジックの状態を追加
+  const [showCpuInfo, setShowCpuInfo] = useState(false);  // CPU情報を表示するかどうか
 
   useEffect(() => {
     if (gameStarted) {
       fetchCards();
     }
   }, [gameStarted]);
+
+  useEffect(() => {
+    if (['CPUよわい', 'CPUふつう', 'CPUつよい'].includes(player2Name)) {
+      setCpuLogic(() => new CpuLogic({ cards, difficulty: player2Name, matchedCards, history: [] }));
+    } else {
+      setCpuLogic(null);
+    }
+  }, [player2Name, cards, matchedCards]);
 
   const fetchCards = async () => {
     const dogBreeds = ['poodle', 'bulldog', 'beagle', 'dalmatian', 'retriever', 'terrier', 'husky', 'chihuahua'];
@@ -102,14 +113,13 @@ function App() {
           setGameFinished(true);
         }
 
-        // カードが揃った場合はターンを切り替えない
         setTimeout(() => {
           setSelectedCards([]);
           updatedCards[firstCardIndex].revealed = false;
           updatedCards[index].revealed = false;
           setCards(updatedCards);
         }, 1000);
-        return; // カードが揃った場合はターンを切り替えない
+        return; 
       }
 
       setTurns(turns + 1);
@@ -124,6 +134,15 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (cpuLogic && currentPlayer === 2) {
+      const cardToSelect = cpuLogic.selectCard();  // 修正
+      if (cardToSelect) {
+        handleCardClick(cardToSelect.id); // CPUがカードを選ぶ
+      }
+    }
+  }, [cpuLogic, currentPlayer, cards, matchedCards]);
+
   return (
     <div className="App">
       {!gameStarted ? (
@@ -132,9 +151,9 @@ function App() {
         <GameResult
           player1Score={player1Score}
           player2Score={player2Score}
-          player1Name={player1Name}  // プレイヤー1の名前をGameResultに渡す
-          player2Name={player2Name}  // プレイヤー2の名前をGameResultに渡す
-          startNewGame={startNewGame}  // New Gameボタンの処理
+          player1Name={player1Name}
+          player2Name={player2Name}
+          startNewGame={startNewGame}
         />
       ) : (
         <>
@@ -147,6 +166,28 @@ function App() {
           />
           <GameBoard cards={cards} handleCardClick={handleCardClick} matchedCards={matchedCards} />
         </>
+      )}
+
+      {/* 右下にCPU情報ボタン */}
+      <button 
+        className="cpu-info-btn"
+        onClick={() => setShowCpuInfo(!showCpuInfo)}
+      >
+        CPU情報
+      </button>
+
+      {/* CPU情報を中央に表示 */}
+      {showCpuInfo && (
+        <div className="cpu-info">
+          <h2>CPUの難易度</h2>
+          <p>
+             プレイヤー2の名前を「CPU+つよさ」にしてください。<br />
+            「CPUよわい」はランダムでカードを選択します。<br />
+            「CPUふつう」は覚えたカードを使ってプレイします。<br />
+            「CPUつよい」は高確率で覚えたカードを使って賢くプレイします。
+          </p>
+          <button onClick={() => setShowCpuInfo(false)}>閉じる</button>
+        </div>
       )}
     </div>
   );
